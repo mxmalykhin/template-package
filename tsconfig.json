@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "exactOptionalPropertyTypes": true,
+    "types": [
+      "node",
+      "jest"
+    ],
+    "newLine": "lf",
+    "importHelpers": true,
+    "isolatedModules": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "target": "es2016",
+    "jsx": "preserve",
+    "lib": [
+      "ES2023"
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@repo/types/*": [
+        "./@types/*"
+      ],
+      "@repo/scripts/*": [
+        "./scripts/*"
+      ],
+      "@repo/rollup/*": [
+        "./scripts/rollup/*"
+      ],
+      "@repo/package.json": [
+        "./package.json"
+      ]
+    },
+    "moduleDetection": "force",
+    "noPropertyAccessFromIndexSignature": true,
+    "explainFiles": false,
+    "listEmittedFiles": false,
+    "listFiles": false,
+    "traceResolution": false,
+    "noErrorTruncation": true,
+    "verbatimModuleSyntax": true,
+    "plugins": [
+      { "transform": "typescript-transform-paths" }
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "coverage",
+    "publish-package"
+  ],
+  "ts-node": {
+    "files": true,
+    "require": [ "typescript-transform-paths/register" ],
+    "compilerOptions": {
+      "moduleResolution": "node"
+    },
+    "moduleTypes": {
+      "jest.config.ts": "cjs"
+    }
+  }
+}

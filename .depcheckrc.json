@@ -1,0 +1,24 @@
+{
+  "ignore-patterns": [
+    "dist",
+    "coverage"
+  ],
+  "ignores": [
+    "@types/*",
+    "@typescript-eslint/*",
+    "@changesets/*",
+    "@repo/*",
+    "depcheck",
+    "babel-*",
+    "eslint*",
+    "ts-node",
+    "typescript",
+    "jest",
+    "prettier",
+    "rimraf",
+    "tslib",
+    "husky"
+  ],
+  "skip-missing": false,
+  "ignore-bin-package": false
+}

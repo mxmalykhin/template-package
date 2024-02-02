@@ -1,0 +1,65 @@
+{
+  "search.exclude": {
+    "pnpm-lock.yaml": true,
+    "package-lock.json": true,
+    "yarn.lock": true,
+    "**/node_modules": true,
+    "**/coverage": true,
+    "**/dist": true
+  },
+  "npm.packageManager": "pnpm",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "eslint.enable": true,
+  "eslint.experimental.useFlatConfig": true,
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.trace.server": "verbose",
+  "debug.javascript.unmapMissingSources": true,
+  "files.exclude": {
+    "*[!test]**/node_modules": true
+  },
+  "terminal.integrated.scrollback": 10000,
+  "todo-tree.filtering.excludeGlobs": [
+    "**/node_modules",
+    "**/dist",
+    "**/coverage"
+  ],
+  "todo-tree.general.tags": [
+    "BUG",
+    "HACK",
+    "FIXME",
+    "TODO",
+    "XXX",
+    "[ ]",
+    "[x]",
+    "TODO-APP"
+  ],
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "$(capture).test.ts, $(capture).test.tsx",
+    "*.tsx": "$(capture).test.ts, $(capture).test.tsx",
+    "package.json": "pnpm-workspace.yaml, pnpm-lock.yaml, package-lock.json, yarn.lock"
+  },
+  "jest.autoRun": "off",
+  "cSpell.words": [
+    "nextjs",
+  ],
+  "grammarly.selectors": [
+    {
+      "language": "markdown",
+      "scheme": "file",
+      "pattern": "**/*.md"
+    }
+  ],
+
+}

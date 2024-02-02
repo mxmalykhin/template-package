@@ -1,0 +1,24 @@
+# Ensure consistent line endings across different OSes
+* text=auto eol=lf
+
+# JavaScript files
+*.js eol=lf
+
+# TypeScript files
+*.ts eol=lf
+*.tsx eol=lf
+
+# JSON files
+*.json eol=lf
+
+# Markdown and YAML files
+*.md eol=lf
+*.yml eol=lf
+
+# Lockfiles: Viewing changes can be important for verifying dependency updates
+yarn.lock linguist-generated=false
+package-lock.json linguist-generated=false
+pnpm-lock.yaml linguist-generated=false
+
+# Set the repository to show as TypeScript on GitHub
+*.js linguist-detectable=false
