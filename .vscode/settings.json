@@ -14,6 +14,15 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "eslint.enable": true,
   "eslint.experimental.useFlatConfig": true,
   "eslint.workingDirectories": [{ "mode": "auto" }],
@@ -23,7 +32,7 @@
     "typescript",
     "typescriptreact"
   ],
-  "eslint.trace.server": "verbose",
+  "eslint.trace.server": "messages",
   "debug.javascript.unmapMissingSources": true,
   "files.exclude": {
     "*[!test]**/node_modules": true
@@ -46,20 +55,29 @@
   ],
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
+    "*.cjs": "$(capture).min.cjs",
+    "*.js": "$(capture).min.js",
     "*.ts": "$(capture).test.ts, $(capture).test.tsx",
     "*.tsx": "$(capture).test.ts, $(capture).test.tsx",
     "package.json": "pnpm-workspace.yaml, pnpm-lock.yaml, package-lock.json, yarn.lock"
   },
-  "jest.autoRun": "off",
+  "jest.runMode": "on-demand",
   "cSpell.words": [
     "nextjs",
+    "malykhin",
+    "mxmalykhin",
+    "iife",
+    "skott",
+    "syncpack",
+    "tsbuildinfo",
+    "postpublish"
   ],
-  "grammarly.selectors": [
-    {
-      "language": "markdown",
-      "scheme": "file",
-      "pattern": "**/*.md"
-    }
-  ],
-
+  "tailwindCSS.experimental.classRegex": [
+    "@tw\\s\\*\/\\s+[\"'`]([^\"'`]*)",
+    ["cn\\(([^]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
+    ["clsx\\(([^]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
+    ["classnames\\(([^)]*)\\)", "[\"'`]([^\"'`]*)[\"'`]"],
+    ["classList.(?:add|remove)\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
+    ["(?:\\b(?:const|let|var)\\s+)?[\\w$_]*(?:[Ss]tyles|[Cc]lasses|[Cc]lassnames)[\\w\\d]*\\s*(?:=|\\+=)\\s*(?:[\"'`])([^\"'`]*?)(?:[\"'`])"]
+  ]
 }

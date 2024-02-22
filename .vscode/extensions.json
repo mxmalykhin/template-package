@@ -1,30 +1,17 @@
 {
   "recommendations": [
-    "eamodio.gitlens",
     "EditorConfig.EditorConfig",
     "DavidAnson.vscode-markdownlint",
 		"dbaeumer.vscode-eslint",
 		"esbenp.prettier-vscode",
-		"streetsidesoftware.code-spell-checker",
     "usernamehw.errorlens",
-    "rvest.vs-code-prettier-eslint",
     "orta.vscode-jest",
-    "github.vscode-pull-request-github",
     "gruntfuggly.todo-tree",
-    "ms-vsliveshare.vsliveshare",
-    "ms-vscode.vscode-js-profile-flame",
-    "unifiedjs.vscode-mdx",
-    "znck.grammarly",
     "github.copilot",
-    "christian-kohler.npm-intellisense",
     "bradlc.vscode-tailwindcss",
-    "github.vscode-pull-request-github",
-    "heybourn.headwind",
-    "ms-azuretools.vscode-docker",
-    "ms-vscode-remote.remote-containers",
     "yzhang.markdown-all-in-one",
     "johnsoncodehk.vscode-tsconfig-helper",
     "naumovs.color-highlight",
-    "SonarSource.sonarlint-vscode"
+    "WakaTime.vscode-wakatime"
   ]
 }
