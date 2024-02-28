@@ -3,6 +3,7 @@
 This document outlines various ideas, tools, and concepts I plan to explore and possibly integrate into my template. It's a mix of potential enhancements, intriguing plugins, and technologies that caught my attention.
 
 ### 🔄 Syncing Template with Forked Projects
+
 - Explore various methods and tools for synchronizing template changes with forked projects:
   - [git-repo-sync](https://github.com/it3xl/git-repo-sync)
   - [action-template-repository-sync](https://github.com/ahmadnassri/action-template-repository-sync)
@@ -10,6 +11,7 @@ This document outlines various ideas, tools, and concepts I plan to explore and 
   - [Blog on GitHub templates and repository sync](https://0xdc.me/blog/github-templates-and-repository-sync/)
 
 ## 🌱 Later Considerations
+
 - Explore [All Contributors](https://allcontributors.org/) for acknowledging contributions.
 - Consider integrating a `.devcontainer` for consistent development environments.
 - Implement automated testing of output bundles to ensure their correct operation in different environments.

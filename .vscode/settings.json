@@ -1,4 +1,86 @@
 {
+  "debug.console.fontFamily": "'JetBrains Mono', monospace",
+  "debug.javascript.unmapMissingSources": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+  "editor.codeLensFontFamily": "'JetBrains Mono', monospace",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.fontFamily": "'JetBrains Mono', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 13,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.formatOnType": false,
+  "editor.inlayHints.fontFamily": "'JetBrains Mono', monospace",
+  "editor.inlineSuggest.enabled": true,
+  "editor.lineHeight": 1.2,
+  "editor.linkedEditing": true,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "selection",
+  "editor.smoothScrolling": true,
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "match": "package\\.json",
+        "isAsync": true,
+        "cmd": "pnpm syncpack format"
+      },
+      {
+        "match": "jest\\.config\\.ts",
+        "isAsync": true,
+        "cmd": "pnpm pretest"
+      }
+    ]
+  },
+  "eslint.enable": true,
+  "eslint.experimental.useFlatConfig": true,
+  "eslint.trace.server": "messages",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.d.ts": "$(capture).d.ts.map",
+    "*.d.cts": "$(capture).d.cts.map",
+    "*.d.mts": "$(capture).d.mts.map",
+    "*.cjs": "$(capture).min.cjs, $(capture).cjs.map, $(capture).min.cjs.map",
+    "*.mjs": "$(capture).min.mjs, $(capture).mjs.map, $(capture).min.mjs.map",
+    "*.js": "$(capture).min.js, $(capture).js.map, $(capture).min.js.map",
+    "*.ts": "$(capture).test.ts, $(capture).test.tsx, $(capture).js",
+    "*.tsx": "$(capture).test.ts, $(capture).test.tsx",
+    "package.json": "pnpm-workspace.yaml, pnpm-lock.yaml, package-lock.json, yarn.lock"
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "files.exclude": {
+    "*[!test]**/node_modules": true
+  },
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "git.autofetch": true,
+  "github.copilot.editor.enableAutoCompletions": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": false
+  },
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "jest.runMode": "on-demand",
+  "npm.packageManager": "pnpm",
+  "scm.inputFontFamily": "'JetBrains Mono', monospace",
   "search.exclude": {
     "pnpm-lock.yaml": true,
     "package-lock.json": true,
@@ -7,37 +89,31 @@
     "**/coverage": true,
     "**/dist": true
   },
-  "npm.packageManager": "pnpm",
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "javascript.preferences.importModuleSpecifier": "non-relative",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "eslint.enable": true,
-  "eslint.experimental.useFlatConfig": true,
-  "eslint.workingDirectories": [{ "mode": "auto" }],
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.experimental.classRegex": [
+    "@tw\\s\\*/\\s+[\"'`]([^\"'`]*)",
+    ["cn\\(([^]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
+    ["clsx\\(([^]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
+    ["classnames\\(([^)]*)\\)", "[\"'`]([^\"'`]*)[\"'`]"],
+    ["classList.(?:add|remove)\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
+    [
+      "(?:\\b(?:const|let|var)\\s+)?[\\w$_]*(?:[Ss]tyles|[Cc]lasses|[Cc]lassnames)[\\w\\d]*\\s*(?:=|\\+=)\\s*(?:[\"'`])([^\"'`]*?)(?:[\"'`])"
+    ]
   ],
-  "eslint.trace.server": "messages",
-  "debug.javascript.unmapMissingSources": true,
-  "files.exclude": {
-    "*[!test]**/node_modules": true
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript",
+    "javascript": "javascript",
+    "javascriptreact": "javascriptreact",
+    "css": "css",
+    "plaintext": "html"
   },
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "terminal.integrated.fontFamily": "'JetBrains Mono', monospace",
+  "terminal.integrated.fontSize": 14,
   "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.smoothScrolling": true,
   "todo-tree.filtering.excludeGlobs": [
     "**/node_modules",
     "**/dist",
@@ -53,31 +129,6 @@
     "[x]",
     "TODO-APP"
   ],
-  "explorer.fileNesting.enabled": true,
-  "explorer.fileNesting.patterns": {
-    "*.cjs": "$(capture).min.cjs",
-    "*.js": "$(capture).min.js",
-    "*.ts": "$(capture).test.ts, $(capture).test.tsx",
-    "*.tsx": "$(capture).test.ts, $(capture).test.tsx",
-    "package.json": "pnpm-workspace.yaml, pnpm-lock.yaml, package-lock.json, yarn.lock"
-  },
-  "jest.runMode": "on-demand",
-  "cSpell.words": [
-    "nextjs",
-    "malykhin",
-    "mxmalykhin",
-    "iife",
-    "skott",
-    "syncpack",
-    "tsbuildinfo",
-    "postpublish"
-  ],
-  "tailwindCSS.experimental.classRegex": [
-    "@tw\\s\\*\/\\s+[\"'`]([^\"'`]*)",
-    ["cn\\(([^]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
-    ["clsx\\(([^]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
-    ["classnames\\(([^)]*)\\)", "[\"'`]([^\"'`]*)[\"'`]"],
-    ["classList.(?:add|remove)\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)"],
-    ["(?:\\b(?:const|let|var)\\s+)?[\\w$_]*(?:[Ss]tyles|[Cc]lasses|[Cc]lassnames)[\\w\\d]*\\s*(?:=|\\+=)\\s*(?:[\"'`])([^\"'`]*?)(?:[\"'`])"]
-  ]
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

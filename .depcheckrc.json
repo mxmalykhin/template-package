@@ -1,8 +1,5 @@
 {
-  "ignore-patterns": [
-    "dist",
-    "coverage"
-  ],
+  "ignore-patterns": ["dist", "coverage"],
   "ignores": [
     "@types/*",
     "@typescript-eslint/*",
@@ -11,13 +8,15 @@
     "depcheck",
     "babel-*",
     "eslint*",
-    "ts-node",
     "typescript",
     "jest",
     "prettier",
     "rimraf",
     "tslib",
-    "husky"
+    "husky",
+    "@microsoft/api-extractor",
+    "@microsoft/api-extractor-model",
+    "ts-jest"
   ],
   "skip-missing": false,
   "ignore-bin-package": false

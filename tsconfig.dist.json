@@ -2,11 +2,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
-    "skipDefaultLibCheck": false,
-    "skipLibCheck": false,
+    "declarationDir": "temp-types",
+    "noEmitOnError": true,
+    "skipLibCheck": false
   },
-  "include": [
-    "src/**/*",
-    "@types/**/*",
-  ],
+  "include": ["src/**/*"]
 }

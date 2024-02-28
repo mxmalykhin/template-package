@@ -1,34 +1,41 @@
-import { execSync } from 'child_process';
-
+import { execSync } from 'node:child_process';
+import { createRequire } from 'node:module';
 import path from 'node:path';
-import type { OutputOptions, RollupOptions } from 'rollup';
-import { dts } from 'rollup-plugin-dts';
-import esbuild from 'rollup-plugin-esbuild';
-import { nodeExternals } from 'rollup-plugin-node-externals';
-import typescript from 'rollup-plugin-typescript2';
-import { visualizer } from 'rollup-plugin-visualizer';
 
-import { getExternals } from '@repo/rollup/options/input/external';
-import { getInput } from '@repo/rollup/options/input/input';
 import {
   dist,
   distCjs,
   distEsm,
   distIife,
-  distTypes,
+  distTsConfig,
   distUmd,
   isDebug,
   isProduction,
   now,
   pkgJson,
+  src,
+  targetBrowser,
+  targetNode,
 } from '@repo/scripts/constants';
+import { getExternals } from '@repo/scripts/rollup/options/input/external';
+import { getInput } from '@repo/scripts/rollup/options/input/input';
 import { getBanner } from '@repo/scripts/rollup/options/output/banner';
+import clear from '@repo/scripts/rollup/plugins/clear';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 import url from '@rollup/plugin-url';
+import type { OutputOptions, RollupOptions } from 'rollup';
+import esbuild from 'rollup-plugin-esbuild';
+import { nodeExternals } from 'rollup-plugin-node-externals';
+import typescript from 'rollup-plugin-typescript2';
+import { visualizer } from 'rollup-plugin-visualizer';
+
+const cjsRequire = createRequire(import.meta.url);
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+const tspCompiler = cjsRequire('ts-patch/compiler');
 
 type BuildModules = 'esm' | 'cjs' | 'umd' | 'iife';
 
@@ -41,15 +48,24 @@ function getGitVersion(): string {
   }
 }
 
+function isTargetingBrowser(format: BuildModules): boolean {
+  return format !== 'cjs';
+}
+
 function createPlugins(
   isMultiInput: boolean,
   format: BuildModules,
   minify: boolean
 ) {
+  const isBrowser = isTargetingBrowser(format);
+  const target = isBrowser ? targetBrowser : targetNode;
+
   const tsPlugin =
     isProduction ?
       typescript({
-        tsconfig: './tsconfig.dist.json',
+        tsconfig: distTsConfig,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        typescript: tspCompiler,
         clean: true,
       })
     : esbuild({
@@ -57,7 +73,7 @@ function createPlugins(
         exclude: /node_modules/,
         minify: false,
         sourceMap: true,
-        target: 'es2018',
+        target,
       });
 
   const basePlugins = [
@@ -66,9 +82,9 @@ function createPlugins(
       preventAssignment: true,
       values: {
         'process.env.NODE_ENV': JSON.stringify(
-          process.env.NODE_ENV ?? 'production'
+          process.env['NODE_ENV'] ?? 'production'
         ),
-        'process.env.DEBUG': JSON.stringify(process.env.DEBUG),
+        'process.env.DEBUG': JSON.stringify(process.env['DEBUG']),
         'process.env.VERSION': JSON.stringify(getGitVersion()),
         'process.env.BUILD_DATE': JSON.stringify(now.toISOString()),
       },
@@ -77,8 +93,8 @@ function createPlugins(
       preferBuiltins: true,
       extensions: ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.json', '.node'],
     }),
-    commonjs({ sourceMap: !isProduction }),
     tsPlugin,
+    commonjs({ sourceMap: !isProduction }),
     json({ compact: true }),
     url(),
   ];
@@ -119,10 +135,14 @@ function createOutputOptions(
 
   const moduleOutputOptions = {
     esm: {
+      preserveModulesRoot: src,
       preserveModules: isMultiInput,
+      exports: 'named',
     },
     cjs: {
+      preserveModulesRoot: src,
       preserveModules: isMultiInput,
+      exports: 'named',
     },
     umd: {
       name: pkgJson.name,
@@ -143,44 +163,34 @@ function createOutputOptions(
     entryFileNames: `[name]${fileNameSuffix}${extensionMap[format]}`,
     sourcemap: !isProduction,
     banner: getBanner,
+    indent: format !== 'esm',
     ...moduleOutputOptions[format],
   } as OutputOptions;
 }
 
-function generateRollupConfigs() {
-  const formats: BuildModules[] = ['esm', 'cjs', 'umd', 'iife'];
+// eslint-disable-next-line @typescript-eslint/require-await
+async function generateRollupConfigs() {
+  const formats: BuildModules[] = ['esm', 'cjs'];
   const isMultiInput = true;
 
   const input = getInput(isMultiInput);
-
   const configs: RollupOptions[] = [];
 
-  formats.forEach((format) => {
-    const minifyOptions = isProduction ? [false, true] : [false];
+  clear({ targets: [dist] });
 
-    minifyOptions.forEach((minify) => {
+  formats.forEach((format) => {
+    // const minifyOptions = isProduction ? [false, true] : [false];
+
+    [false].forEach((minify) => {
       configs.push({
         input,
+        cache: false,
         external: getExternals,
         plugins: createPlugins(isMultiInput, format, minify),
         output: createOutputOptions(isMultiInput, format, minify),
       });
     });
   });
-
-  configs.push({
-    input,
-    output: { file: path.join(dist, 'index.d.ts'), format: 'es' },
-    plugins: [dts()],
-  });
-
-  if (isMultiInput) {
-    configs.push({
-      input,
-      output: { dir: distTypes, format: 'es', preserveModules: true },
-      plugins: [dts()],
-    });
-  }
 
   return configs;
 }

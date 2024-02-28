@@ -1,15 +1,21 @@
 import { builtinModules as nodeBuiltinModules } from 'node:module';
-import type { ExternalOption } from 'rollup';
 
 import { pkgJson } from '@repo/scripts/constants';
+import type { ExternalOption } from 'rollup';
 
 const allDeps = [
   ...nodeBuiltinModules,
-  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   ...Object.keys(pkgJson.dependencies || {}),
-  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   ...Object.keys(pkgJson.peerDependencies || {}),
-  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   ...Object.keys(pkgJson.devPeerDependencies || {}),
 ];
 

@@ -1,32 +1,23 @@
 {
+  "$schema": "https://unpkg.com/syncpack@12.3.0/dist/schema.json",
   "semverGroups": [
     {
-      "dependencyTypes": [
-        "!peer"
-      ],
+      "dependencyTypes": ["!peer"],
       "range": "^"
     },
     {
-      "dependencyTypes": [
-        "peer"
-      ],
+      "dependencyTypes": ["peer"],
       "range": "<"
     }
   ],
   "versionGroups": [
     {
-      "dependencies": [
-        "$LOCAL"
-      ],
-      "dependencyTypes": [
-        "prod",
-        "dev"
-      ],
+      "dependencies": ["$LOCAL"],
+      "dependencyTypes": ["prod", "dev"],
       "pinVersion": "workspace:*"
     },
     {
       "policy": "sameRange"
     }
-  ],
-  "$schema": "https://unpkg.com/syncpack@12.3.0/dist/schema.json"
+  ]
 }

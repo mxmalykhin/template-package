@@ -7,6 +7,7 @@ Easy-to-use template for TypeScript libraries for UI or Node.js. It's made for p
 Skip the setup and dive right into coding. This toolkit is perfect for any TypeScript package, packed with best practices.
 
 ## ✨ Motivation
+
 This template is my own solution, born out of a desire to have a setup that fits just right for me. I was aware of [create-typescript-app](https://github.com/JoshuaKGoldberg/create-typescript-app), yet I chose to make my own. Through this process, I am continuously gaining valuable insights and skills, and I intend to keep refining this template as I learn more.
 
 ## 🌟 Getting Started

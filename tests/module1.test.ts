@@ -1,4 +1,4 @@
-import indexModule from '../src/index';
+import indexModule from '@/index';
 
 describe('index', () => {
   describe('foo2', () => {

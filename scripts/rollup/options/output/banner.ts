@@ -1,7 +1,7 @@
+import { copyright, now, pkgJson } from '@repo/scripts/constants';
 import type { OutputOptions } from 'rollup';
 
-import { copyright, now, pkgJson } from '@repo/scripts/constants';
-
+// eslint-disable-next-line @typescript-eslint/ban-types
 export const getBanner: Extract<OutputOptions['banner'], Function> = (
   chunk
 ) => {

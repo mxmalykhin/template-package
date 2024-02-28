@@ -7,4 +7,24 @@ export default {
   tabWidth: 2,
   experimentalTernaries: true,
   parser: 'typescript',
+  overrides: [
+    {
+      files: ['tsconfig*.json', '.vscode/*.json'],
+      options: {
+        parser: 'json5',
+      },
+    },
+    {
+      files: '*.json',
+      options: {
+        parser: 'json',
+      },
+    },
+    {
+      files: '*.md',
+      options: {
+        parser: 'markdown',
+      },
+    },
+  ],
 };

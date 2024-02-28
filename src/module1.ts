@@ -1,4 +1,4 @@
-import { type RollupBuild } from 'rollup';
+import type { RollupBuild } from 'rollup';
 
 export const foo1 = (text = '') => `[module1] -> [foo1] ${text}`;
 

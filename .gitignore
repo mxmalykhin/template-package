@@ -149,3 +149,5 @@ dist/
 
 .DS_Store
 publish-package
+temp-types
+jest.config.js

@@ -1,75 +1,30 @@
 {
   "$schema": "http://json.schemastore.org/tsconfig",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "allowJs": true,
     "esModuleInterop": true,
     "exactOptionalPropertyTypes": true,
-    "types": [
-      "node",
-      "jest"
-    ],
-    "newLine": "lf",
-    "importHelpers": true,
+    "types": ["node", "jest"],
+    "importHelpers": false,
     "isolatedModules": true,
-    "module": "ESNext",
-    "moduleResolution": "bundler",
     "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "target": "es2016",
     "jsx": "preserve",
-    "lib": [
-      "ES2023"
-    ],
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@repo/types/*": [
-        "./@types/*"
-      ],
-      "@repo/scripts/*": [
-        "./scripts/*"
-      ],
-      "@repo/rollup/*": [
-        "./scripts/rollup/*"
-      ],
-      "@repo/package.json": [
-        "./package.json"
-      ]
-    },
     "moduleDetection": "force",
     "noPropertyAccessFromIndexSignature": true,
+    "noErrorTruncation": true,
+    "verbatimModuleSyntax": true,
     "explainFiles": false,
     "listEmittedFiles": false,
     "listFiles": false,
-    "traceResolution": false,
-    "noErrorTruncation": true,
-    "verbatimModuleSyntax": true,
-    "plugins": [
-      { "transform": "typescript-transform-paths" }
-    ]
+    "traceResolution": false
   },
-  "exclude": [
-    "node_modules",
-    "dist",
-    "coverage",
-    "publish-package"
-  ],
-  "ts-node": {
-    "files": true,
-    "require": [ "typescript-transform-paths/register" ],
-    "compilerOptions": {
-      "moduleResolution": "node"
-    },
-    "moduleTypes": {
-      "jest.config.ts": "cjs"
-    }
-  }
+  "exclude": ["node_modules", "dist", "coverage", "publish-package"]
 }

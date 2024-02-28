@@ -1,17 +1,18 @@
 {
   "recommendations": [
     "EditorConfig.EditorConfig",
+    "esbenp.prettier-vscode",
     "DavidAnson.vscode-markdownlint",
-		"dbaeumer.vscode-eslint",
-		"esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
     "usernamehw.errorlens",
     "orta.vscode-jest",
     "gruntfuggly.todo-tree",
     "github.copilot",
     "bradlc.vscode-tailwindcss",
     "yzhang.markdown-all-in-one",
-    "johnsoncodehk.vscode-tsconfig-helper",
     "naumovs.color-highlight",
-    "WakaTime.vscode-wakatime"
+    "WakaTime.vscode-wakatime",
+    "YoavBls.pretty-ts-errors",
+    "emeraldwalk.RunOnSave"
   ]
 }

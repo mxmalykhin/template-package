@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "strict": true,
+    "moduleResolution": "bundler",
+    "module": "ESNext",
+    "lib": ["esnext"],
+    "baseUrl": "./",
+    "newLine": "lf",
+    "incremental": false,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@repo/*": ["./*"],
+      "@repo/scripts/*": ["./scripts/*"],
+      "@repo/constants": ["./scripts/constants.ts"],
+      "@repo/package.json": ["./package.json"]
+    },
+    "plugins": [
+      {
+        "transform": "typescript-transform-paths"
+      },
+      {
+        "transform": "typescript-transform-paths",
+        "afterDeclarations": true
+      }
+    ]
+  }
+}

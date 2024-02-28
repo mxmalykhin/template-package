@@ -1,3 +1,10 @@
+LICENSE
+.editorconfig
+.gitattributes
+.gitignore
+.nvmrc
+.npmrc
+
 node_modules
 dist
 __fixtures__
@@ -12,3 +19,6 @@ coverage/
 snapshot/
 generated/
 pnpm-lock.yaml
+.prettierignore
+package.json
+jest.config.js
