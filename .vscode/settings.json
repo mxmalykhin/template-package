@@ -2,31 +2,35 @@
   "debug.console.fontFamily": "'JetBrains Mono', monospace",
   "debug.javascript.unmapMissingSources": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always"
+    "source.organizeImports": "always"
   },
   "editor.codeLensFontFamily": "'JetBrains Mono', monospace",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "biomejs.biome",
   "editor.fontFamily": "'JetBrains Mono', monospace",
   "editor.fontLigatures": true,
   "editor.fontSize": 13,
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
+  "editor.tabSize": 2,
   "editor.formatOnSaveMode": "file",
   "editor.formatOnType": false,
   "editor.inlayHints.fontFamily": "'JetBrains Mono', monospace",
   "editor.inlineSuggest.enabled": true,
-  "editor.lineHeight": 1.2,
+  "editor.lineHeight": 1.655,
   "editor.linkedEditing": true,
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "selection",
   "editor.smoothScrolling": true,
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
   "emeraldwalk.runonsave": {
     "commands": [
-      {
-        "match": "package\\.json",
-        "isAsync": true,
-        "cmd": "pnpm syncpack format"
-      },
+      // {
+      // 	"match": "package\\.json",
+      // 	"isAsync": true,
+      // 	"cmd": "pnpm syncpack format"
+      // },
       {
         "match": "jest\\.config\\.ts",
         "isAsync": true,
@@ -34,23 +38,11 @@
       }
     ]
   },
-  "eslint.enable": true,
-  "eslint.experimental.useFlatConfig": true,
-  "eslint.trace.server": "messages",
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
-  "eslint.workingDirectories": [
-    {
-      "mode": "auto"
-    }
-  ],
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.autoReveal": false,
   "explorer.fileNesting.patterns": {
     "*.d.ts": "$(capture).d.ts.map",
     "*.d.cts": "$(capture).d.cts.map",
@@ -63,10 +55,11 @@
     "package.json": "pnpm-workspace.yaml, pnpm-lock.yaml, package-lock.json, yarn.lock"
   },
   "files.associations": {
-    "*.css": "tailwindcss"
+    "*.css": "tailwindcss",
+    ".env*": "dotenv"
   },
   "files.exclude": {
-    "*[!test]**/node_modules": true
+    "*[!test]**/node_modules": false
   },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
@@ -75,7 +68,8 @@
   "github.copilot.enable": {
     "*": true,
     "yaml": false,
-    "plaintext": false
+    "plaintext": false,
+    "dotenv": false
   },
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "jest.runMode": "on-demand",
@@ -114,21 +108,16 @@
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.scrollback": 10000,
   "terminal.integrated.smoothScrolling": true,
-  "todo-tree.filtering.excludeGlobs": [
-    "**/node_modules",
-    "**/dist",
-    "**/coverage"
-  ],
-  "todo-tree.general.tags": [
-    "BUG",
-    "HACK",
-    "FIXME",
-    "TODO",
-    "XXX",
-    "[ ]",
-    "[x]",
-    "TODO-APP"
-  ],
+  "todo-tree.filtering.excludeGlobs": ["**/node_modules", "**/dist", "**/coverage"],
+  "todo-tree.general.tags": ["BUG", "HACK", "FIXME", "TODO", "XXX", "[ ]", "[x]", "TODO-APP"],
   "typescript.preferences.importModuleSpecifier": "non-relative",
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "workbench.iconTheme": "macos-modern-big-sur-icon-theme",
+  "workbench.productIconTheme": "macos-modern",
+  "workbench.startupEditor": "none",
+  "workbench.colorTheme": "Dracula",
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "editor.indentSize": "tabSize"
 }

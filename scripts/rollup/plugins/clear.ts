@@ -1,8 +1,8 @@
-import { root } from '@repo/scripts/constants';
-import { glob } from 'glob';
-import * as path from 'path';
-import { rimraf } from 'rimraf';
-import { type Plugin } from 'rollup';
+import { root } from "@repo/scripts/constants";
+import { glob } from "glob";
+import * as path from "node:path";
+import { rimraf } from "rimraf";
+import type { Plugin } from "rollup";
 
 interface ClearOptions {
   targets: string[];
@@ -22,13 +22,13 @@ export default function clear(options: ClearOptions): Plugin {
 
         await rimraf(fullPath);
 
-        console.debug('Cleared:', fullPath);
+        console.debug("Cleared:", fullPath);
       }
     }
   };
 
   return {
-    name: 'clear',
+    name: "clear",
     buildStart: async () => {
       await clearTargets(targets);
     },

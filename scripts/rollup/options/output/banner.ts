@@ -1,15 +1,16 @@
-import { copyright, now, pkgJson } from '@repo/scripts/constants';
-import type { OutputOptions } from 'rollup';
+import type { OutputOptions } from "rollup";
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export const getBanner: Extract<OutputOptions['banner'], Function> = (
-  chunk
-) => {
+import { copyright, now, pkgJson } from "@repo/scripts/constants";
+import { getCommitHash } from "@repo/scripts/utils/getCommitHash";
+
+// biome-ignore lint/complexity/noBannedTypes: it's a just function
+export const getBanner: Extract<OutputOptions["banner"], Function> = (chunk) => {
   const buildDate = now.toISOString().slice(0, 10);
 
   const banner = `/**
  * @module ${pkgJson.name}
  * @version ${pkgJson.version}
+ * @commit ${getCommitHash()}
  * @description ${pkgJson.description}
  * @file ${chunk.fileName}
  * @date ${buildDate}
