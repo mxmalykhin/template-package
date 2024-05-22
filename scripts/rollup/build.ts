@@ -1,5 +1,5 @@
-import { createRequire } from "node:module";
-import path from "node:path";
+import { createRequire } from 'node:module';
+import path from 'node:path';
 
 import {
   dist,
@@ -11,34 +11,37 @@ import {
   isDebug,
   isProduction,
   pkgJson,
+  root,
   src,
   targetBrowser,
   targetNode,
-} from "@repo/scripts/constants";
-import { getExternals } from "@repo/scripts/rollup/options/input/external";
-import { getInput } from "@repo/scripts/rollup/options/input/input";
-import { getBanner } from "@repo/scripts/rollup/options/output/banner";
-import clear from "@repo/scripts/rollup/plugins/clear";
-import { getCommitHash } from "@repo/scripts/utils/getCommitHash";
-import commonjs from "@rollup/plugin-commonjs";
-import json from "@rollup/plugin-json";
-import nodeResolve from "@rollup/plugin-node-resolve";
-import terser from "@rollup/plugin-terser";
-import url from "@rollup/plugin-url";
-import type { OutputOptions, RollupOptions } from "rollup";
-import esbuild from "rollup-plugin-esbuild";
-import injectProcessEnv from "rollup-plugin-inject-process-env";
-import { nodeExternals } from "rollup-plugin-node-externals";
-import typescript from "rollup-plugin-typescript2";
-import { visualizer } from "rollup-plugin-visualizer";
+} from '@/scripts/constants';
+import { getExternals } from '@/scripts/rollup/options/input/external';
+import { getInput } from '@/scripts/rollup/options/input/input';
+import { getBanner } from '@/scripts/rollup/options/output/banner';
+import clear from '@/scripts/rollup/plugins/clear';
+import { getCommitHash } from '@/scripts/utils/getCommitHash';
+import alias from '@rollup/plugin-alias';
+import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
+import nodeResolve from '@rollup/plugin-node-resolve';
+import terser from '@rollup/plugin-terser';
+import url from '@rollup/plugin-url';
+import type { OutputOptions, Plugin, RollupOptions } from 'rollup';
+import esbuild from 'rollup-plugin-esbuild';
+import filesize from 'rollup-plugin-filesize';
+import injectProcessEnv from 'rollup-plugin-inject-process-env';
+import { nodeExternals } from 'rollup-plugin-node-externals';
+import typescript from 'rollup-plugin-typescript2';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 const cjsRequire = createRequire(import.meta.url);
-const tspCompiler = cjsRequire("ts-patch/compiler");
+const tspCompiler = cjsRequire('ts-patch/compiler');
 
-type BuildModules = "esm" | "cjs" | "umd" | "iife";
+type BuildModules = 'esm' | 'cjs' | 'umd' | 'iife';
 
 function isTargetingBrowser(format: BuildModules): boolean {
-  return format !== "cjs";
+  return format !== 'cjs';
 }
 
 function createPlugins(isMultiInput: boolean, format: BuildModules, minify: boolean) {
@@ -60,30 +63,38 @@ function createPlugins(isMultiInput: boolean, format: BuildModules, minify: bool
         exclude: /node_modules/,
         minify: false,
         sourceMap: true,
-        target: ["node20"],
+        target: ['node20'],
+        tsconfig: distTsConfig,
       });
 
   const basePlugins = [
     nodeExternals(),
     injectProcessEnv({
       // biome-ignore lint/complexity/useLiteralKeys: FIXME
-      NODE_ENV: process.env["NODE_ENV"] ?? "production",
+      NODE_ENV: process.env['NODE_ENV'] ?? 'production',
       COMMIT_HASH: commitHash,
       BUILD_DATE: buildDate,
       // biome-ignore lint/complexity/useLiteralKeys: FIXME
-      DEBIG: JSON.stringify(process.env["DEBUG"]),
+      DEBUG: JSON.stringify(process.env['DEBUG']),
     }),
     nodeResolve({
+      browser: isBrowser,
       preferBuiltins: true,
-      extensions: [".ts", ".tsx", ".js", ".jsx", ".mjs", ".json", ".node"],
+      extensions: ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.json', '.node'],
     }),
     tsPlugin,
+    // rollup-plugin-esbuild doesn't support auto resolve tsconfig paths (https://github.com/egoist/rollup-plugin-esbuild/issues/70)
+    // but rollup-plugin-typescript2 does, therefore we use "@rollup/plugin-alias" in dev mode when esbuild compiles (under @rollup/plugin-alias it uses rollup-plugin-typescript2 too but for resolve tsconfig paths)
+    !isProduction &&
+      alias({
+        entries: [{ find: '@', replacement: root }],
+      }),
     commonjs({ sourceMap: !isProduction }),
     json({ compact: true }),
     url(),
-  ];
+  ].filter(Boolean) as Plugin[];
 
-  if (isDebug && (format === "cjs" || format === "esm")) {
+  if (isDebug && (format === 'cjs' || format === 'esm')) {
     basePlugins.push(
       visualizer({
         filename: path.resolve(dist, `bundle-stats-${format}.html`),
@@ -93,6 +104,7 @@ function createPlugins(isMultiInput: boolean, format: BuildModules, minify: bool
 
   if (isProduction && minify) {
     basePlugins.push(terser());
+    basePlugins.push(filesize());
   }
 
   return basePlugins;
@@ -100,10 +112,10 @@ function createPlugins(isMultiInput: boolean, format: BuildModules, minify: bool
 
 function createOutputOptions(isMultiInput: boolean, format: BuildModules, minify: boolean): OutputOptions {
   const extensionMap: Record<BuildModules, string> = {
-    esm: ".js",
-    cjs: ".cjs",
-    umd: ".js",
-    iife: ".js",
+    esm: '.js',
+    cjs: '.cjs',
+    umd: '.js',
+    iife: '.js',
   };
 
   const formatDirMap: Record<BuildModules, string> = {
@@ -117,12 +129,12 @@ function createOutputOptions(isMultiInput: boolean, format: BuildModules, minify
     esm: {
       preserveModulesRoot: src,
       preserveModules: isMultiInput,
-      exports: "named",
+      exports: 'named',
     },
     cjs: {
       preserveModulesRoot: src,
       preserveModules: isMultiInput,
-      exports: "named",
+      exports: 'named',
     },
     umd: {
       name: pkgJson.name,
@@ -135,7 +147,7 @@ function createOutputOptions(isMultiInput: boolean, format: BuildModules, minify
     },
   } satisfies Record<BuildModules, OutputOptions>;
 
-  const fileNameSuffix = minify ? ".min" : "";
+  const fileNameSuffix = minify ? '.min' : '';
 
   return {
     format,
@@ -143,13 +155,13 @@ function createOutputOptions(isMultiInput: boolean, format: BuildModules, minify
     entryFileNames: `[name]${fileNameSuffix}${extensionMap[format]}`,
     sourcemap: !isProduction,
     banner: getBanner,
-    indent: format !== "esm",
+    indent: format !== 'esm',
     ...moduleOutputOptions[format],
   } as OutputOptions;
 }
 
 async function generateRollupConfigs() {
-  const formats: BuildModules[] = ["esm", "cjs"];
+  const formats: BuildModules[] = ['esm', 'cjs'];
   const isMultiInput = true;
 
   const input = getInput(isMultiInput);

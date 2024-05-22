@@ -11,7 +11,7 @@
   },
   "linter": {
     "enabled": true,
-    "ignore": [".vscode"]
+    "ignore": ["dist", ".vscode"]
   },
   "formatter": {
     "enabled": true,
@@ -21,11 +21,24 @@
     "indentWidth": 2,
     "attributePosition": "auto",
     "lineEnding": "lf",
-    "ignore": [".vscode"]
+    "ignore": ["dist", ".vscode"]
+  },
+  "javascript": {
+    "formatter": {
+      "enabled": true,
+      "quoteStyle": "single",
+      "quoteProperties": "asNeeded",
+      "trailingComma": "all",
+      "semicolons": "always"
+    }
   },
   "json": {
     "formatter": {
       "trailingCommas": "none"
     }
+  },
+  "files": {
+    "ignoreUnknown": true,
+    "maxSize": 1000000
   }
 }

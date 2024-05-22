@@ -1,15 +1,15 @@
-import type { RollupBuild } from "rollup";
+import type { RollupBuild } from 'rollup';
 
-export const foo1 = (text = "") => `[module1] -> [foo1] ${text}`;
+export const foo1 = (text = '') => `[module1] -> [foo1] ${text}`;
 
-const fooDefault = (test = "") => `[module1] -> [fooDefault] ${test}`;
+const fooDefault = (test = '') => `[module1] -> [fooDefault] ${test}`;
 
-console.debug("[module1] running (side-effect)");
+console.debug('[module1] running (side-effect)');
 
-export type TestTypeInModule1 = "asd" | "asd22" | false;
+export type TestTypeInModule1 = 'asd' | 'asd22' | false;
 
 export function fooSideEffect() {
-  console.debug("[module1] -> [fooSideEffect] running (side-effect in exported function)");
+  console.debug('[module1] -> [fooSideEffect] running (side-effect in exported function)');
 }
 
 export const build: RollupBuild | undefined = undefined;
@@ -21,11 +21,11 @@ export function fooUnusedFunc(): RollupBuild {
 }
 
 function fooUnusedSideEffectFunc() {
-  console.debug("[module1] -> [fooUnusedSideEffectFunc] running (side-effect)");
+  console.debug('[module1] -> [fooUnusedSideEffectFunc] running (side-effect)');
 }
 
 export function fooExportedSideEffectFunc() {
-  console.debug("[module1] -> [fooExportedSideEffectFunc] running (side-effect)");
+  console.debug('[module1] -> [fooExportedSideEffectFunc] running (side-effect)');
 }
 
 export default fooDefault;

@@ -1,4 +1,4 @@
-import type { WarningHandlerWithDefault } from "rollup";
+import type { WarningHandlerWithDefault } from 'rollup';
 
 const silence = new Map();
 

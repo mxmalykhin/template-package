@@ -1,24 +1,25 @@
-import path from "node:path";
+import path from 'node:path';
 
-import { distCjs, distEsm, distTsConfig, tempTypes } from "@repo/constants";
-import fs from "fs-extra";
-import { glob } from "glob";
-import { Project } from "ts-morph";
+import { distCjs, distEsm, distTsConfig, tempTypes } from '@/scripts/constants';
+import fs from 'fs-extra';
+import { glob } from 'glob';
+import { Project } from 'ts-morph';
 
 async function normalizeDtsMap(file: string, newFileName: string) {
-  const mapContent = await fs.readFile(file, "utf8");
+  const mapContent = await fs.readFile(file, 'utf8');
   const map = JSON.parse(mapContent);
+  // @ts-ignore
   map.file = newFileName;
 
-  await fs.writeFile(file, JSON.stringify(map), "utf8");
+  await fs.writeFile(file, JSON.stringify(map), 'utf8');
 }
 
 async function updateSourceMappingURL(file: string, newMapFileName: string) {
-  const content = await fs.readFile(file, "utf8");
+  const content = await fs.readFile(file, 'utf8');
 
   const updatedContent = content.replace(/\/\/# sourceMappingURL=.*/, `//# sourceMappingURL=${newMapFileName}`);
 
-  await fs.writeFile(file, updatedContent, "utf8");
+  await fs.writeFile(file, updatedContent, 'utf8');
 }
 
 async function normalizeDtsImports(filePath: string, isCjs: boolean) {
@@ -30,8 +31,8 @@ async function normalizeDtsImports(filePath: string, isCjs: boolean) {
   for (const importDeclaration of sourceFile.getImportDeclarations()) {
     let moduleSpecifier = importDeclaration.getModuleSpecifierValue();
 
-    if (moduleSpecifier.startsWith("./") || moduleSpecifier.startsWith("../")) {
-      moduleSpecifier += isCjs ? ".cjs" : ".js";
+    if (moduleSpecifier.startsWith('./') || moduleSpecifier.startsWith('../')) {
+      moduleSpecifier += isCjs ? '.cjs' : '.js';
       importDeclaration.setModuleSpecifier(moduleSpecifier);
     }
   }
@@ -44,13 +45,13 @@ export default async function processDtsFiles() {
   await fs.ensureDir(distEsm);
 
   const dtsExt = {
-    cjs: ".d.cts",
-    esm: ".d.ts",
+    cjs: '.d.cts',
+    esm: '.d.ts',
   };
 
   const dtsMapExt = {
-    cjs: ".d.cts.map",
-    esm: ".d.ts.map",
+    cjs: '.d.cts.map',
+    esm: '.d.ts.map',
   };
 
   const dtsFiles = await glob(`${tempTypes}/**/*.{d.ts,d.cts,d.mts}`);
@@ -61,7 +62,7 @@ export default async function processDtsFiles() {
 
     return {
       relativePath,
-      baseFileName: path.basename(filePath).replace(/\.(d\.)?(ts|cts|mts)(\.map)?$/, ""),
+      baseFileName: path.basename(filePath).replace(/\.(d\.)?(ts|cts|mts)(\.map)?$/, ''),
       relativeDir: path.dirname(relativePath),
     };
   };

@@ -14,10 +14,13 @@
     "enabled": false
   },
   "docModel": {
-    "enabled": false
+    "enabled": false,
+    "apiJsonFilePath": "<projectFolder>/docs/docs.api.json",
+    "projectFolderUrl": "https://github.com/mxmalykhin/template-package"
   },
   "tsdocMetadata": {
-    "enabled": false
+    "enabled": false,
+    "tsdocMetadataFilePath": "<projectFolder>/dist/tsdoc-metadata.json"
   },
   "messages": {
     "compilerMessageReporting": {
@@ -27,12 +30,17 @@
     },
     "extractorMessageReporting": {
       "default": {
-        "logLevel": "warning"
+        "logLevel": "none",
+        "addToApiReportFile": false
+      },
+      "ae-forgotten-export": {
+        "logLevel": "none"
       }
     },
     "tsdocMessageReporting": {
       "default": {
-        "logLevel": "warning"
+        "logLevel": "none",
+        "addToApiReportFile": false
       }
     }
   }

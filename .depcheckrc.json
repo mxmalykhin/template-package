@@ -14,7 +14,12 @@
     "husky",
     "@microsoft/api-extractor",
     "@microsoft/api-extractor-model",
-    "ts-jest"
+    "@microsoft/tsdoc",
+    "ts-jest",
+    "@biomejs/*",
+    "typedoc",
+    "typedoc-*",
+    "chalk"
   ],
   "skip-missing": false,
   "ignore-bin-package": false
