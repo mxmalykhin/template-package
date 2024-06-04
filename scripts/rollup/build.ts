@@ -15,12 +15,12 @@ import {
   src,
   targetBrowser,
   targetNode,
-} from '@/scripts/constants';
-import { getExternals } from '@/scripts/rollup/options/input/external';
-import { getInput } from '@/scripts/rollup/options/input/input';
-import { getBanner } from '@/scripts/rollup/options/output/banner';
-import clear from '@/scripts/rollup/plugins/clear';
-import { getCommitHash } from '@/scripts/utils/getCommitHash';
+} from '@@/scripts/constants';
+import { getExternals } from '@@/scripts/rollup/options/input/external';
+import { getInput } from '@@/scripts/rollup/options/input/input';
+import { getBanner } from '@@/scripts/rollup/options/output/banner';
+import clear from '@@/scripts/rollup/plugins/clear';
+import { getCommitHash } from '@@/scripts/utils/getCommitHash';
 import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
@@ -69,8 +69,9 @@ function createPlugins(isMultiInput: boolean, format: BuildModules, minify: bool
 
   const basePlugins = [
     nodeExternals(),
+    json({ compact: true }),
     injectProcessEnv({
-      // biome-ignore lint/complexity/useLiteralKeys: FIXME
+      // biome-ignore lint/complexity/useLiteralKeys: <explanation>
       NODE_ENV: process.env['NODE_ENV'] ?? 'production',
       COMMIT_HASH: commitHash,
       BUILD_DATE: buildDate,
@@ -87,10 +88,12 @@ function createPlugins(isMultiInput: boolean, format: BuildModules, minify: bool
     // but rollup-plugin-typescript2 does, therefore we use "@rollup/plugin-alias" in dev mode when esbuild compiles (under @rollup/plugin-alias it uses rollup-plugin-typescript2 too but for resolve tsconfig paths)
     !isProduction &&
       alias({
-        entries: [{ find: '@', replacement: root }],
+        entries: [
+          { find: '@', replacement: src },
+          { find: '@@', replacement: root },
+        ],
       }),
     commonjs({ sourceMap: !isProduction }),
-    json({ compact: true }),
     url(),
   ].filter(Boolean) as Plugin[];
 

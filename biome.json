@@ -11,7 +11,7 @@
   },
   "linter": {
     "enabled": true,
-    "ignore": ["dist", ".vscode"]
+    "ignore": ["dist", ".vscode", ".tmp"]
   },
   "formatter": {
     "enabled": true,
@@ -21,7 +21,7 @@
     "indentWidth": 2,
     "attributePosition": "auto",
     "lineEnding": "lf",
-    "ignore": ["dist", ".vscode"]
+    "ignore": ["dist", ".vscode", ".tmp"]
   },
   "javascript": {
     "formatter": {

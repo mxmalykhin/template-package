@@ -5,7 +5,7 @@
   "compiler": {
     "tsconfigFilePath": "./tsconfig.dist.json"
   },
-  "mainEntryPointFilePath": "./temp-types/index.d.ts",
+  "mainEntryPointFilePath": "./.tmp/types/index.d.ts",
   "dtsRollup": {
     "enabled": true,
     "untrimmedFilePath": "./dist/index.d.ts"
@@ -15,12 +15,10 @@
   },
   "docModel": {
     "enabled": false,
-    "apiJsonFilePath": "<projectFolder>/docs/docs.api.json",
     "projectFolderUrl": "https://github.com/mxmalykhin/template-package"
   },
   "tsdocMetadata": {
-    "enabled": false,
-    "tsdocMetadataFilePath": "<projectFolder>/dist/tsdoc-metadata.json"
+    "enabled": false
   },
   "messages": {
     "compilerMessageReporting": {

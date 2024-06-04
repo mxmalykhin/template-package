@@ -1,7 +1,7 @@
 import type { OutputOptions } from 'rollup';
 
-import { copyright, now, pkgJson } from '@/scripts/constants';
-import { getCommitHash } from '@/scripts/utils/getCommitHash';
+import { copyright, now, pkgJson } from '@@/scripts/constants';
+import { getCommitHash } from '@@/scripts/utils/getCommitHash';
 
 // biome-ignore lint/complexity/noBannedTypes: it's a just function
 export const getBanner: Extract<OutputOptions['banner'], Function> = (chunk) => {

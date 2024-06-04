@@ -1,13 +1,12 @@
 import * as console from 'node:console';
 import path from 'node:path';
+import * as process from 'node:process';
 import chalk from 'chalk';
 
-import { dist, isProduction } from '@/scripts/constants';
-import { copyFile } from '@/scripts/utils/fileOperations';
-
-import * as process from 'node:process';
-import apiExtractor from '@/scripts/dts/apiExtractor';
-import processDtsFiles from '@/scripts/dts/processDtsFiles';
+import { dist, isProduction } from '@@/scripts/constants';
+import apiExtractor from '@@/scripts/dts/apiExtractor';
+import processDtsFiles from '@@/scripts/dts/processDtsFiles';
+import { copyFile } from '@@/scripts/utils/fileOperations';
 
 async function main() {
   try {

@@ -1,5 +1,5 @@
 import * as process from 'node:process';
-import { entry, src } from '@/scripts/constants';
+import { entry, src } from '@@/scripts/constants';
 import chalk from 'chalk';
 import { glob } from 'glob';
 import type { InputOption } from 'rollup';

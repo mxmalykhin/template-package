@@ -1,6 +1,7 @@
-import { extractorBin, isProduction } from '@/scripts/constants';
 import chalk from 'chalk';
 import { execa } from 'execa';
+
+import { extractorBin, isProduction } from '@@/scripts/constants';
 
 export default async function apiExtractor() {
   // biome-ignore lint/complexity/useLiteralKeys: FIXME

@@ -1,8 +1,9 @@
 import console from 'node:console';
 import path from 'node:path';
-import { distTsConfig, dtsDir, isProduction } from '@/scripts/constants';
-import { execProcess } from '@/scripts/utils/process';
 import chalk from 'chalk';
+
+import { distTsConfig, dtsDir, isProduction } from '@@/scripts/constants';
+import { execProcess } from '@@/scripts/utils/process';
 
 const processDtsName = 'types';
 const processTspcName = 'tspc';

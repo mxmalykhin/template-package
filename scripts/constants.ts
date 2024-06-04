@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import pkgJson from '@/package.json' assert { type: 'json' };
+import pkgJson from '@@/package.json' assert { type: 'json' };
 
 export const __filename = fileURLToPath(new URL('.', import.meta.url));
 export const __dirname = path.dirname(__filename);
@@ -10,12 +10,17 @@ export const __dirname = path.dirname(__filename);
 export const root = path.resolve(__dirname);
 
 export const nodeModules = path.resolve(root, 'node_modules');
-export const tempTypes = path.resolve(root, 'temp-types');
 
 export const pkg = path.resolve(root, 'package.json');
 export const entry = path.resolve(root, 'src/index.ts');
 export const src = path.resolve(root, 'src');
 export const scripts = path.resolve(root, 'scripts');
+export const tests = path.resolve(root, 'tests');
+export const tmp = path.resolve(root, '.tmp');
+
+export const tempTypes = path.resolve(tmp, 'types');
+export const tempTests = path.resolve(tmp, 'tests');
+export const tempTestsReports = path.resolve(tempTests, 'reports');
 
 export const rollupDir = path.resolve(scripts, 'rollup');
 export const rollupBuildConfig = path.resolve(rollupDir, 'build.ts');

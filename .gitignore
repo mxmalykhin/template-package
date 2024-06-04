@@ -145,7 +145,4 @@ dist/
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode
 
 .DS_Store
-publish-package
-temp-types
-jest.config.js
-.idea
+.tmp

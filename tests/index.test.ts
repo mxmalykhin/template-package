@@ -1,4 +1,4 @@
-import { foo1 } from '@/src/module1';
+import { foo1 } from '@/module1';
 
 describe('module1', () => {
   describe('foo1', () => {

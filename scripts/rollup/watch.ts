@@ -1,6 +1,6 @@
 import console from 'node:console';
-import { distCjs, distEsm, isProduction } from '@/scripts/constants';
-import rollupConfig from '@/scripts/rollup/build';
+import { distCjs, distEsm, isProduction } from '@@/scripts/constants';
+import rollupConfig from '@@/scripts/rollup/build';
 import chalk from 'chalk';
 import { type RollupWatcherEvent, watch } from 'rollup';
 

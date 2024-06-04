@@ -1,11 +1,9 @@
 {
-  "$schema": "http://json.schemastore.org/tsconfig",
+  "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "allowJs": true,
-    "esModuleInterop": true,
     "exactOptionalPropertyTypes": true,
-    "types": ["node", "jest"],
+    "types": ["node", "vitest/globals"],
     "importHelpers": false,
     "isolatedModules": true,
     "noUncheckedIndexedAccess": true,
@@ -15,7 +13,6 @@
     "resolveJsonModule": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "target": "es2016",
     "jsx": "preserve",
     "moduleDetection": "force",
     "noPropertyAccessFromIndexSignature": true,
@@ -26,5 +23,5 @@
     "listFiles": false,
     "traceResolution": false
   },
-  "exclude": ["node_modules", "dist", "coverage", "publish-package"]
+  "exclude": ["./node_modules", "./.tmp", "./dist", "./coverage"]
 }

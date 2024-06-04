@@ -2,17 +2,20 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "strict": true,
-    "moduleResolution": "bundler",
-    "module": "ESNext",
+    "esModuleInterop": true,
+    "target": "ESNext",
     "lib": ["esnext"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "baseUrl": "./",
     "newLine": "lf",
     "incremental": false,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     "isolatedModules": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"],
+      "@@/*": ["./*"]
     },
     "plugins": [
       {

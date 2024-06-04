@@ -30,12 +30,7 @@
       // 	"match": "package\\.json",
       // 	"isAsync": true,
       // 	"cmd": "pnpm syncpack format"
-      // },
-      {
-        "match": "jest\\.config\\.ts",
-        "isAsync": true,
-        "cmd": "pnpm pretest"
-      }
+      // }
     ]
   },
   "explorer.confirmDelete": false,
@@ -72,7 +67,6 @@
     "dotenv": false
   },
   "javascript.preferences.importModuleSpecifier": "non-relative",
-  "jest.runMode": "on-demand",
   "npm.packageManager": "pnpm",
   "scm.inputFontFamily": "'JetBrains Mono', monospace",
   "search.exclude": {

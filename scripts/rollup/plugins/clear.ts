@@ -1,5 +1,5 @@
 import * as path from 'node:path';
-import { root } from '@/scripts/constants';
+import { root } from '@@/scripts/constants';
 import { glob } from 'glob';
 import { rimraf } from 'rimraf';
 import type { Plugin } from 'rollup';

@@ -1,4 +1,4 @@
-import { testing2 } from '@/src/folder-test/module3';
+import { testing2 } from '@@/src/folder-test/module3';
 
 import { testing2 as testing2Relative } from './module3';
 

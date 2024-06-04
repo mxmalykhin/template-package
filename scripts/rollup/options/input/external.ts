@@ -1,6 +1,6 @@
 import { builtinModules as nodeBuiltinModules } from 'node:module';
 
-import { pkgJson } from '@/scripts/constants';
+import { pkgJson } from '@@/scripts/constants';
 import type { ExternalOption } from 'rollup';
 
 const allDeps = [

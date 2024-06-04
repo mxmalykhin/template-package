@@ -1,4 +1,4 @@
-import * as a from '@/src/module1';
+import * as a from '@@/src/module1';
 
 export const test = '123';
 

@@ -16,10 +16,7 @@ This document outlines various ideas, tools, and concepts I plan to explore and 
 - Consider integrating a `.devcontainer` for consistent development environments.
 - Implement automated testing of output bundles to ensure their correct operation in different environments.
 - Research and potentially implement a CI example like [this one from un-ts/pkgr](https://github.com/un-ts/pkgr/blob/master/.github/workflows/ci.yml).
-- Consider using SWC for testing. [Jest config reference](https://github.com/typescript-eslint/typescript-eslint/blob/main/jest.config.base.js)
 - Investigate more about `peerDependenciesMeta` and `peerDependencies`.
-- Explore ways to speed up Jest, potentially moving away from `jest.config.ts`. [Reference Article](https://miyauchi.dev/posts/speeding-up-jest/#stop-to-use-jestconfigts)
-- Investigate a more ESM-friendly Jest configuration. [Example](https://github.com/pavelkornev/ts-esm-paths-jest/blob/main/jest.config.js)
 - Consider the necessity of CJS if UMD can suffice.
 - Look into testing `.d.ts` files for type accuracy.
 - Understand the need for duplicating types and modules in `package.json -> exports`. [Discussion](https://github.com/rollup/plugins/pull/1578#issuecomment-1718872840)
@@ -36,7 +33,6 @@ This document outlines various ideas, tools, and concepts I plan to explore and 
 - Contemplate the use of Deno in my workflow.
 - Utilize [dep-tree](https://github.com/gabotechs/dep-tree?tab=readme-ov-file) for dependency analysis.
 - Decide on including `inlineSourceMap` and `inlineSources` in tsconfig for production builds.
-- Explore VSCode Jest Extensions for improved testing workflows. [Nx Issue for reference](https://github.com/nrwl/nx/issues/3868)
 - Incorporate tools and libraries like [ts-reset](https://github.com/total-typescript/ts-reset), [ts-toolbelt](https://github.com/millsp/ts-toolbelt), and [ts-essentials](https://github.com/ts-essentials/ts-essentials) for enhanced TypeScript development.
 - Look into package management improvements with tools like [yarn-deduplicate](https://github.com/scinos/yarn-deduplicate) and [node-semver](https://github.com/npm/node-semver).
 - Assess patching strategies with [patch-package](https://github.com/ds300/patch-package).
@@ -45,7 +41,6 @@ This document outlines various ideas, tools, and concepts I plan to explore and 
 - Implement debug tools like [debug-js](https://github.com/debug-js/debug) for better debugging experiences.
 - Assess type coverage with [type-coverage](https://github.com/plantain-00/type-coverage).
 - Review configuration options with [Renovate Bot](https://docs.renovatebot.com/configuration-options/).
-- Enhance Jest with plugins like [jest-watch-typeahead](https://github.com/jest-community/jest-watch-typeahead) and consider using [preconstruct](https://preconstruct.tools/) for prebuilt packages.
 - Integrate environment variable management with [dotenv](https://github.com/motdotla/dotenv).
 - Research additional tools and plugins, including [license-checker-rseidelsohn](https://github.com/RSeidelsohn/license-checker-rseidelsohn), [knip](https://github.com/webpro/knip), [console-fail-test](https://www.npmjs.com/package/console-fail-test), [cspell](https://www.npmjs.com/package/cspell), [release-it](https://www.npmjs.com/package/release-it), and [tsup](https://www.npmjs.com/package/tsup).
 - Stay informed about licensing information with [license-checker-rseidelsohn](https://github.com/RSeidelsohn/license-checker-rseidelsohn?tab=readme-ov-file#related-information-sources-on-the-internet).

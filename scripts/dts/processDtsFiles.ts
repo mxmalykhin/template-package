@@ -1,9 +1,9 @@
 import path from 'node:path';
-
-import { distCjs, distEsm, distTsConfig, tempTypes } from '@/scripts/constants';
 import fs from 'fs-extra';
 import { glob } from 'glob';
 import { Project } from 'ts-morph';
+
+import { distCjs, distEsm, distTsConfig, tempTypes } from '@@/scripts/constants';
 
 async function normalizeDtsMap(file: string, newFileName: string) {
   const mapContent = await fs.readFile(file, 'utf8');
