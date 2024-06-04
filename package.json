@@ -1,7 +1,7 @@
 {
   "name": "@mxmalykhin/template-package",
   "description": "Template for public npm packages (TS, CJS/ESM, Vitest, Biome, Rollup + ESBuild, Husky)",
-  "version": "0.0.12",
+  "version": "0.0.12-development",
   "author": {
     "name": "Maxim Malykhin",
     "email": "mxmalykhin@users.noreply.github.com",
@@ -9,9 +9,7 @@
   },
   "bugs": "https://github.com/mxmalykhin/template-package/issues",
   "clean-publish": {
-    "files": [
-      "./.*"
-    ],
+    "files": ["./.*"],
     "withoutPublish": true,
     "tempDir": "./.tmp/release",
     "cleanDocs": true
@@ -20,12 +18,7 @@
     "directory": "./.tmp/release",
     "access": "public"
   },
-  "files": [
-    "./dist/**/*",
-    "./README.md",
-    "./LICENSE",
-    "./package.json"
-  ],
+  "files": ["./dist/**/*", "./README.md", "./LICENSE", "./package.json"],
   "devDependencies": {
     "@biomejs/biome": "1.7.3",
     "@faker-js/faker": "^8.4.1",
@@ -123,25 +116,32 @@
     "build:compile": "rollup --environment NODE_ENV:production -c scripts/rollup/build.ts --configPlugin typescript2",
     "build:compile:types": "tspc --project tsconfig.dist.json --emitDeclarationOnly --declaration --declarationMap && tsx scripts/dts/index.ts",
     "clear": "rimraf coverage dist .tsbuildinfo .rollup.cache .vite/vitest .tmp",
+
     "_comment_development": "----------- DEVELOPMENT COMMANDS -----------",
     "dev": "tsx ./scripts/dev.ts",
     "dev:rollup": "tsx ./scripts/rollup/watch.ts",
     "dev:types": "tsx ./scripts/dts/watch.ts",
+
     "_comment_testing": "----------- TESTING COMMANDS -----------",
     "test": "NODE_OPTIONS='--import tsx/esm' vitest --run",
     "test:dev": "NODE_OPTIONS='--import tsx/esm' vitest",
     "test:coverage": "NODE_OPTIONS='--import tsx/esm' vitest --run --coverage",
+
     "_comment_linting_formatting": "----------- LINTING & FORMATTING -----------",
     "lint": "npx @biomejs/biome lint .",
     "format": "npx @biomejs/biome format --write .",
+
     "_comment_publishing": "----------- PUBLISHING COMMANDS -----------",
     "postpublish": "run-s clear",
     "prepublishOnly": "npm run build && clean-publish",
+
     "_comment_setup": "----------- SETUP COMMANDS -----------",
     "prepare": "ts-patch install -s && (husky || true)",
+
     "_comment_analysis": "----------- ANALYSIS COMMANDS -----------",
     "analyze": "npx skott dist/esm/index.js --displayMode=webapp --trackThirdPartyDependencies",
     "analyze:cjs": "npx skott dist/cjs/index.cjs --displayMode=webapp --trackThirdPartyDependencies",
+
     "_comment_git_hooks": "----------- GIT HOOKS -----------",
     "pre-commit": "run-s lint test"
   },
@@ -149,9 +149,7 @@
   "type": "module",
   "license": "MIT",
   "release": {
-    "branches": [
-      "main"
-    ]
+    "branches": ["main"]
   },
   "repository": {
     "type": "git",
