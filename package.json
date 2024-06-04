@@ -1,7 +1,7 @@
 {
   "name": "@mxmalykhin/template-package",
   "description": "Template for public npm packages (TS, CJS/ESM, Vitest, Biome, Rollup + ESBuild, Husky)",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "author": {
     "name": "Maxim Malykhin",
     "email": "mxmalykhin@users.noreply.github.com",
