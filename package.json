@@ -1,7 +1,7 @@
 {
   "name": "@mxmalykhin/template-package",
   "description": "Template for public npm packages (TS, CJS/ESM, Vitest, Biome, Rollup + ESBuild, Husky)",
-  "version": "0.0.10-development",
+  "version": "0.0.11-development",
   "author": {
     "name": "Maxim Malykhin",
     "email": "mxmalykhin@users.noreply.github.com",
@@ -9,11 +9,16 @@
   },
   "bugs": "https://github.com/mxmalykhin/template-package/issues",
   "clean-publish": {
-    "files": [".*"],
+    "files": ["./.*"],
     "withoutPublish": true,
-    "tempDir": ".tmp/publish",
+    "tempDir": "./.tmp/release",
     "cleanDocs": true
   },
+  "publishConfig": {
+    "directory": "./.tmp/release",
+    "access": "public"
+  },
+  "files": ["./dist/**/*", "./README.md", "./LICENSE", "./package.json"],
   "devDependencies": {
     "@biomejs/biome": "1.7.3",
     "@faker-js/faker": "^8.4.1",
@@ -60,6 +65,9 @@
   "engines": {
     "node": ">=20"
   },
+  "types": "./dist/index.d.ts",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
   "exports": {
     ".": {
       "import": {
@@ -83,7 +91,6 @@
     },
     "./package.json": "./package.json"
   },
-  "files": ["dist/**/*", "README.md", "LICENSE", "**/package.json"],
   "homepage": "https://github.com/mxmalykhin/template-package#readme",
   "keywords": [
     "biome-template",
@@ -103,17 +110,6 @@
     "testing-framework",
     "typescript-template"
   ],
-  "license": "MIT",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
-  "publishConfig": {
-    "directory": ".tmp/publish",
-    "access": "public"
-  },
-  "release": {
-    "branches": ["main"]
-  },
-  "repository": "mxmalykhin/template-package.git",
   "scripts": {
     "_comment_build": "----------- BUILD COMMANDS -----------",
     "build": "run-s format lint test clear build:compile build:compile:types",
@@ -151,5 +147,12 @@
   },
   "sideEffects": false,
   "type": "module",
-  "types": "dist/index.d.ts"
+  "license": "MIT",
+  "release": {
+    "branches": ["main"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mxmalykhin/template-package.git"
+  }
 }
